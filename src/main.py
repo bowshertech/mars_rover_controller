@@ -48,9 +48,9 @@ while True:
                 stop()
                 sys.exit()
             elif event.type == pygame.JOYAXISMOTION:
-                axis = "lr"
+                axis = "x"
                 if event.axis  > 0:
-                    axis = "ud"
+                    axis = "y"
                 movement[axis] = round(event.value,2)
         move()
 
