@@ -36,6 +36,7 @@ def move():
     if movement["x"] == 0:
         print(0)
     else:
+        print(movement)
         print(abs(movement["y"])/abs(movement["x"]))
 
     # rr.set_motors(left_go, left_dir, right_go, right_dir)
