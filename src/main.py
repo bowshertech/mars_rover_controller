@@ -32,10 +32,8 @@ while True:
             elif event.type == pygame.JOYBUTTONDOWN:
                 if event.button == CONTROLLER_PAD_UP:
                     forward()
-            else:
-                stop()
 
     except KeyboardInterrupt:
-        print("Interrupt Received!")
+        print("\nInterrupt Received!")
         rr.stop()
         sys.exit(1)
