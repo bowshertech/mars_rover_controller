@@ -18,7 +18,7 @@ CONTROLLER_PAD_RIGHT = 5
 CONTROLLER_PAD_DOWN = 6
 CONTROLLER_PAD_LEFT = 7
 
-movement = {"left": 0, "right": 0}
+movement = {"x": 0, "y": 0}
 
 def forward():
     rr.set_motors(1, 0, 1, 0)
@@ -27,14 +27,15 @@ def stop():
     rr.set_motors(0, 0, 0, 0)
 
 def move():
-    left_go = abs(movement["left"])
-    right_go = abs(movement["right"])
-    left_dir = movement["left"] > 0
-    right_dir = movement["right"] > 0
+    # left_go = abs(movement["ud"])
+    # left_go = movement["lr"]
+    # left_dir = movement["ud"] + movement["lr"] > 0
+    # right_go = abs(movement["right"])
+    # right_dir = movement["right"] > 0
     os.system('clear')
-    print(movement)
+    print(abs(movement["y"])/abs(movement["x"]))
 
-    rr.set_motors(left_go, left_dir, right_go, right_dir)
+    # rr.set_motors(left_go, left_dir, right_go, right_dir)
 
 
 while True:
@@ -44,7 +45,10 @@ while True:
                 stop()
                 sys.exit()
             elif event.type == pygame.JOYAXISMOTION:
-                movement[event.axis] = round(event.value,2)
+                axis = "lr"
+                if event.axis  > 0:
+                    axis = "ud"
+                movement[axis] = round(event.value,2)
         move()
 
     except KeyboardInterrupt:
