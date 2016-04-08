@@ -27,19 +27,11 @@ def stop():
     rr.set_motors(0, 0, 0, 0)
 
 def move():
-    # left_go = abs(movement["ud"])
-    # left_go = movement["lr"]
-    # left_dir = movement["ud"] + movement["lr"] > 0
-    # right_go = abs(movement["right"])
-    # right_dir = movement["right"] > 0
-    os.system('clear')
-    if movement["x"] == 0:
-        print(0)
-    else:
-        print(movement)
-        print(abs(movement["y"])/abs(movement["x"]))
-
-    # rr.set_motors(left_go, left_dir, right_go, right_dir)
+    left_go = abs(movement["ud"])
+    left_dir = movement["ud"] < 0
+    right_go = abs(movement["ud"])
+    right_dir = movement["ud"] < 0
+    rr.set_motors(left_go, left_dir, right_go, right_dir)
 
 
 while True:
