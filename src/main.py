@@ -33,7 +33,10 @@ def move():
     # right_go = abs(movement["right"])
     # right_dir = movement["right"] > 0
     os.system('clear')
-    print(abs(movement["y"])/abs(movement["x"]))
+    if movement["x"] == 0:
+        print(0)
+    else:
+        print(abs(movement["y"])/abs(movement["x"]))
 
     # rr.set_motors(left_go, left_dir, right_go, right_dir)
 
