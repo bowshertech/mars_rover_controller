@@ -2,6 +2,7 @@
 
 import rrb2 as rrb
 import sys
+import os
 import pygame
 
 #import ex_8x8_pixels
@@ -17,11 +18,24 @@ CONTROLLER_PAD_RIGHT = 5
 CONTROLLER_PAD_DOWN = 6
 CONTROLLER_PAD_LEFT = 7
 
+movement = {"left": 0, "right": 0}
+
 def forward():
     rr.set_motors(1, 0, 1, 0)
 
 def stop():
     rr.set_motors(0, 0, 0, 0)
+
+def move():
+    left_go = abs(movement["left"])
+    right_go = abs(movement["right"])
+    left_dir = movement["left"] > 0
+    right_dir = movement["right"] > 0
+    os.system('cls')
+    print(movement)
+
+    rr.set_motors(left_go, left_dir, right_go, right_dir)
+
 
 while True:
     try:
@@ -29,9 +43,9 @@ while True:
             if event.type == pygame.QUIT:
                 stop()
                 sys.exit()
-            elif event.type == pygame.JOYBUTTONDOWN:
-                if event.button == CONTROLLER_PAD_UP:
-                    forward()
+            elif event.type == pygame.JOYAXISMOTION:
+                movement[event.axis] = round(event.value,2)
+        move()
 
     except KeyboardInterrupt:
         print("\nInterrupt Received!")
