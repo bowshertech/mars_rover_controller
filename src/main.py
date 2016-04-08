@@ -27,10 +27,10 @@ def stop():
     rr.set_motors(0, 0, 0, 0)
 
 def move():
-    left_go = abs(movement["ud"])
-    left_dir = movement["ud"] < 0
-    right_go = abs(movement["ud"])
-    right_dir = movement["ud"] < 0
+    left_go = abs(movement["y"])
+    left_dir = movement["y"] < 0
+    right_go = abs(movement["y"])
+    right_dir = movement["y"] < 0
     rr.set_motors(left_go, left_dir, right_go, right_dir)
 
 
