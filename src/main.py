@@ -69,6 +69,7 @@ while True:
                     axis = "y2"
 
                 movement[axis] = round(event.value,2)
+                calc_dir()
 
     except KeyboardInterrupt:
         print("\nInterrupt Received!")
