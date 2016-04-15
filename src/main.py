@@ -34,10 +34,10 @@ def calc_dir():
     left_reverse = False
     right_reverse = False
 
-    if movement["x2"] > 0:
+    if movement["x2"] < 0:
         right_speed = (1 - math.sqrt(abs(movement["y1"]))) + 0.3
         left_speed = abs(movement["y1"])
-    elif movement["x2"] < 0:
+    elif movement["x2"] > 0:
         left_speed = (1 - math.sqrt(abs(movement["y1"]))) + 0.3
         right_speed = abs(movement["y1"])
     else:
