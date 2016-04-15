@@ -38,7 +38,7 @@ def calc_dir():
     if movement["x2"] > 0:
         right_speed = (1 - math.sqrt(abs(movement["y1"]))) + 0.1
         left_speed = abs(movement["y1"])
-    else:
+    elif movement["x2"] < 0:
         left_speed = (1 - math.sqrt(abs(movement["y1"]))) + 0.1
         right_speed = abs(movement["y1"])
 
