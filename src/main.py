@@ -1,7 +1,6 @@
 #Python 2
 
 import rrb2 as rrb
-import os
 import math
 import sys
 import pygame
@@ -48,12 +47,6 @@ def calc_dir():
     if movement["y1"] > 0:
         left_reverse = True
         right_reverse = True
-
-    os.system('clear')
-    print(left_speed)
-    print(right_speed)
-    print(left_reverse)
-    print(right_reverse)
 
     if left_speed > 1:
         left_speed = 0
