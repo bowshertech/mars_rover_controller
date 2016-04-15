@@ -49,6 +49,11 @@ def calc_dir():
         left_reverse = True
         right_reverse = True
 
+    if left_speed > 1:
+        left_speed = 1
+    if right_speed > 1:
+        right_speed = 1
+
     os.system('clear')
     print(left_speed)
     print(right_speed)
