@@ -18,6 +18,8 @@ CONTROLLER_PAD_RIGHT = 5
 CONTROLLER_PAD_DOWN = 6
 CONTROLLER_PAD_LEFT = 7
 
+TURN_ANGLE = 0.2
+
 movement = {"x1": 0, "y1": 0, "x2": 0, "y2": 0}
 
 # def forward(lspeed, rspeed):
@@ -35,10 +37,10 @@ def calc_dir():
     right_reverse = False
 
     if movement["x2"] < 0:
-        right_speed = (1 - math.sqrt(abs(movement["y1"]))) + 0.3
+        right_speed = (1 - math.sqrt(abs(movement["y1"]))) + TURN_ANGLE
         left_speed = abs(movement["y1"])
     elif movement["x2"] > 0:
-        left_speed = (1 - math.sqrt(abs(movement["y1"]))) + 0.3
+        left_speed = (1 - math.sqrt(abs(movement["y1"]))) + TURN_ANGLE
         right_speed = abs(movement["y1"])
     else:
         right_speed = abs(movement["y1"])
