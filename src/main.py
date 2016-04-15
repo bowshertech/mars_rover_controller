@@ -56,9 +56,9 @@ def calc_dir():
     print(right_reverse)
 
     if left_speed > 1:
-        left_speed = 1
+        left_speed = 0
     if right_speed > 1:
-        right_speed = 1
+        right_speed = 0
 
     move(left_speed, left_reverse, right_speed, right_reverse)
 
