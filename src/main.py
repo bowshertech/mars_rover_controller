@@ -1,6 +1,7 @@
 #Python 2
 
 import rrb2 as rrb
+import os
 import math
 import sys
 import pygame
@@ -46,6 +47,9 @@ def calc_dir():
         right_reverse = True
 
     move(left_speed, left_reverse, right_speed, right_reverse)
+    os.system('cls')
+    print(left_speed)
+    print(right_speed)
 
 
 
