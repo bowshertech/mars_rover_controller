@@ -1,8 +1,8 @@
 #Python 2
 
 import rrb2 as rrb
+import math
 import sys
-import os
 import pygame
 
 #import ex_8x8_pixels
@@ -18,20 +18,39 @@ CONTROLLER_PAD_RIGHT = 5
 CONTROLLER_PAD_DOWN = 6
 CONTROLLER_PAD_LEFT = 7
 
-movement = {"x": 0, "y": 0}
+movement = {"x1": 0, "y1": 0, "x2": 0, "y2": 0}
 
-def forward():
-    rr.set_motors(1, 0, 1, 0)
+# def forward(lspeed, rspeed):
+#     rr.set_motors(lspeed, 0, rspeed, 0)
+#
+# def reverse(lspeed, rspeed):
+#     rr.set_motors(lspeed, 1, rspeed, 1)
+#
 
 def stop():
     rr.set_motors(0, 0, 0, 0)
 
-def move():
-    left_go = abs(movement["y"])
-    left_dir = movement["y"] < 0
-    right_go = abs(movement["y"])
-    right_dir = movement["y"] < 0
-    rr.set_motors(left_go, left_dir, right_go, right_dir)
+def calc_dir():
+    left_reverse = False
+    right_reverse = False
+
+    if movement["x2"] > 0:
+        right_speed = (1 - math.sqrt(abs(movement["y1"]))) + 0.1
+        left_speed = abs(movement["y1"])
+    else:
+        left_speed = (1 - math.sqrt(abs(movement["y1"]))) + 0.1
+        right_speed = abs(movement["y1"])
+
+    if movement["y1"] > 0:
+        left_reverse = True
+        right_reverse = True
+
+    move(left_speed, left_reverse, right_speed, right_reverse)
+
+
+
+def move(lsp, lrev, rsp, rrev):
+    rr.set_motors(lsp, lrev, rsp, rrev)
 
 
 while True:
@@ -41,13 +60,18 @@ while True:
                 stop()
                 sys.exit()
             elif event.type == pygame.JOYAXISMOTION:
-                axis = "x"
-                if event.axis  > 0:
-                    axis = "y"
+                axis = "x1"
+                if event.axis == 1:
+                    axis = "y1"
+                elif event.axis == 2:
+                    axis = "x2"
+                elif event.axis == 3:
+                    axis = "y2"
+
                 movement[axis] = round(event.value,2)
-        move()
 
     except KeyboardInterrupt:
         print("\nInterrupt Received!")
         rr.stop()
         sys.exit(1)
+
